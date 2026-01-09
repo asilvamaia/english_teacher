@@ -14,9 +14,10 @@ load_dotenv()
 API_KEY = os.getenv("GOOGLE_API_KEY") or st.secrets.get("GOOGLE_API_KEY")
 MODEL_ID = "gemma-3-27b-it"
 
-# Configuração de Persistência (Cloud vs Local)
+# --- CORREÇÃO DO ERRO DE BANCO DE DADOS ---
+# Mudamos para v2 para garantir que o SQLite crie a nova estrutura com a coluna 'level'
 IS_CLOUD = os.path.exists("/data")
-DB_FILE = "/data/english_quiz.db" if IS_CLOUD else "english_quiz.db"
+DB_FILE = "/data/english_quiz_v2.db" if IS_CLOUD else "english_quiz_v2.db"
 
 # --- SYLLABUS (TÓPICOS E NÍVEIS) ---
 COURSE_SYLLABUS = {
@@ -494,4 +495,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-    
